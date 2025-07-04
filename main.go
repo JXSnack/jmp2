@@ -3,9 +3,15 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func main() {
+	ok := ensureExistence()
+	if !ok {
+		return
+	}
+
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: jmp2 [-m|-d] <name> [<path>]")
 		return
@@ -21,6 +27,16 @@ func main() {
 	default:
 		do()
 	}
+}
+
+func ensureExistence() bool {
+	ok := os.MkdirAll(filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "me.jxsnack.jmp2"), 0666)
+
+	if ok != nil {
+		fmt.Println(ok)
+	}
+
+	return ok == nil
 }
 
 func callMk() {
