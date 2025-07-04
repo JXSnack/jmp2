@@ -24,6 +24,8 @@ func main() {
 	}
 
 	loadRoutes()
+	defer safeExit()
+
 	operation := os.Args[1]
 
 	switch operation {
@@ -71,4 +73,10 @@ func callDel() {
 
 func do() {
 
+}
+
+func safeExit() {
+	if db != nil {
+		db.Close()
+	}
 }
