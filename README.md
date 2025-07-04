@@ -12,3 +12,18 @@ jp2 mc
 # Delete route
 jp2 -d mc
 ```
+
+## Installation
+
+In your shell config (~/.zshrc, ~/.bashrc, etc.):
+
+```shell
+jp2() {
+    target=$(command jp2-bin "$@")
+    if [ -d "$target" ]; then
+        cd "$target"
+    else
+        echo "$target"
+    fi
+}
+```
