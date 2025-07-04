@@ -64,7 +64,19 @@ func loadRoutes() {
 }
 
 func callMk() {
+	if len(os.Args) < 4 {
+		fmt.Println("Usage: jp2 -m <name> <path>")
+		return
+	}
 
+	result, err := db.Exec("INSERT OR IGNORE INTO Routes (name, value) VALUES (?, ?)", os.Args[2], os.Args[3])
+	if err != nil {
+		panic(err)
+	}
+
+	if rows, _ := result.RowsAffected(); rows == 0 {
+		fmt.Println("cancelled, route already exists")
+	}
 }
 
 func callDel() {
