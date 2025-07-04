@@ -22,6 +22,7 @@ func main() {
 		return
 	}
 
+	loadRoutes()
 	operation := os.Args[1]
 
 	switch operation {
@@ -42,6 +43,20 @@ func ensureExistence() bool {
 	}
 
 	return ok == nil
+}
+
+func loadRoutes() {
+	db, err := sql.Open("sqlite3", filepath.Join(path, "sqlite3.db"))
+	if err != nil {
+		panic(err)
+	}
+
+	defer db.Close()
+
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS Routes(name TEXT PRIMARY KEY, value TEXT NOT NULL)")
+	if err != nil {
+		panic(err)
+	}
 }
 
 func callMk() {
