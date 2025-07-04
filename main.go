@@ -10,6 +10,7 @@ import (
 )
 
 var path = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "me.jxsnack.jp2")
+var db *sql.DB
 
 func main() {
 	ok := ensureExistence()
@@ -47,17 +48,17 @@ func ensureExistence() bool {
 }
 
 func loadRoutes() {
-	db, err := sql.Open("sqlite3", filepath.Join(path, "sqlite3.db"))
+	deebee, err := sql.Open("sqlite3", filepath.Join(path, "sqlite3.db"))
 	if err != nil {
 		panic(err)
 	}
 
-	defer db.Close()
-
-	_, err = db.Exec("CREATE TABLE IF NOT EXISTS Routes(name TEXT PRIMARY KEY, value TEXT NOT NULL)")
+	_, err = deebee.Exec("CREATE TABLE IF NOT EXISTS Routes(name TEXT PRIMARY KEY, value TEXT NOT NULL)")
 	if err != nil {
 		panic(err)
 	}
+
+	db = deebee
 }
 
 func callMk() {
