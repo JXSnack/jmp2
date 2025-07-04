@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -69,7 +70,7 @@ func callMk() {
 		return
 	}
 
-	result, err := db.Exec("INSERT OR IGNORE INTO Routes (name, value) VALUES (?, ?)", os.Args[2], os.Args[3])
+	result, err := db.Exec("INSERT OR IGNORE INTO Routes (name, value) VALUES (?, ?)", os.Args[2], strings.Join(os.Args[3:], " "))
 	if err != nil {
 		panic(err)
 	}
