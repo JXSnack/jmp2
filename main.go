@@ -81,7 +81,19 @@ func callMk() {
 }
 
 func callDel() {
+	if len(os.Args) != 3 {
+		fmt.Println("Usage: jp2 -d <name>")
+		return
+	}
 
+	result, err := db.Exec("DELETE FROM Routes WHERE name = ?", os.Args[2])
+	if err != nil {
+		panic(err)
+	}
+
+	if rows, _ := result.RowsAffected(); rows == 0 {
+		fmt.Println("cancelled, route didn't exist")
+	}
 }
 
 func do() {
