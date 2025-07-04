@@ -97,7 +97,22 @@ func callDel() {
 }
 
 func do() {
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: jp2 <name>")
+		return
+	}
 
+	name := os.Args[1]
+
+	var value string
+	err := db.QueryRow("SELECT value FROM Routes WHERE name = ?", name).Scan(&value)
+
+	if err != nil {
+		fmt.Println("route not found")
+		return
+	}
+
+	fmt.Println(value)
 }
 
 func safeExit() {
