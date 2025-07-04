@@ -36,7 +36,8 @@ func main() {
 }
 
 func ensureExistence() bool {
-	ok := os.MkdirAll(filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "me.jxsnack.jmp2"), 0666)
+	// ensure folder exists
+	ok := os.MkdirAll(path, 0755)
 
 	if ok != nil {
 		fmt.Println(ok)
