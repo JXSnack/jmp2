@@ -9,7 +9,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var path = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "me.jxsnack.jmp2")
+var path = filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "me.jxsnack.jp2")
 
 func main() {
 	ok := ensureExistence()
