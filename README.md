@@ -1,7 +1,6 @@
 # jumpto
 
-Personal little CLI to quickly jump to folders. Tested only on macOS, may work elsewhere. No support promised, use at
-own risk.
+Personal little CLI to quickly jump to folders. Only made for macOS. Will work unexpectedly and weirdly on any other OS.
 
 ```shell
 # Create new route
