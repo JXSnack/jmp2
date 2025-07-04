@@ -13,7 +13,7 @@ func main() {
 	}
 
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: jmp2 [-m|-d] <name> [<path>]")
+		fmt.Println("Usage: jp2 [-m|-d] <name> [<path>]")
 		return
 	}
 
